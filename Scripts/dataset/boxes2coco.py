@@ -152,13 +152,26 @@ for dir in tqdm(data_dirs):
             vis = visibilities[i]
         cur_img_id += 1 # Prevent duplicate image ids
         img_idx = image[6:-10]
+        
+        # FIX: define default dimensions
+        final_width = seq_width
+        final_height = seq_height
+
         if args.label_categories == 'scannet': # rotate images for scannet
             img_arr = cv2.imread(os.path.join(data_folder, dir, "sequence", image))
             img_arr = np.rot90(img_arr, 3)
             cv2.imwrite(f"{obj_output_folder}/images/{split}/{dir}-{img_idx}.jpg", img_arr)
+            
+            # FIX: Swap dimensions for JSON because the image was rotated 90deg
+            final_width = seq_height
+            final_height = seq_width
+            
         elif args.label_categories == 'replica':
             shutil.copyfile(os.path.join(data_folder, dir, "sequence", image), f"{obj_output_folder}/images/{split}/{dir}-{img_idx}.jpg")
-        coco["images"].append({"id": cur_img_id, "file_name": f"{dir}-{img_idx}.jpg", "width": seq_width, "height": seq_height})
+        
+        # FIX: Use final_width/final_height instead of original seq_width/seq_height
+        coco["images"].append({"id": cur_img_id, "file_name": f"{dir}-{img_idx}.jpg", "width": final_width, "height": final_height})
+        
         rel[split][str(cur_img_id)] = []
         
         with open(os.path.join(data_folder, dir, "sequence", bb), 'r') as f:
@@ -182,6 +195,12 @@ for dir in tqdm(data_dirs):
             if w*h < 1:
                 continue
             if args.label_categories == 'scannet':
+                # Note: seq_height here is the original height, which acts as the width for the rotated image.
+                # The transformation below [seq_height-y-h, x, h, w] correctly maps:
+                # new_x = H - y_max
+                # new_y = x_min
+                # new_w = h
+                # new_h = w
                 bbox = [seq_height-y-h, x, h, w]
             elif args.label_categories == 'replica':
                 bbox = [x, y, w, h]

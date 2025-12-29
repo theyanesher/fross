@@ -355,7 +355,7 @@ if __name__ == "__main__":
     args = ArgumentParser()
     args.add_argument("--dataset_path", type=str, required=True)
     args.add_argument("--label_categories", type=str, choices=["scannet", "replica"], default="scannet")
-    args.add_argument("--split", type=str, choices=["train", "val", "test"], default="test")
+    args.add_argument("--split", type=str, choices=["train", "val", "test"], default="val")
     args.add_argument("--prediction_path", type=Path, required=True)
     args.add_argument("--output_path", type=Path, default=None)
     args.add_argument("--eval_overlap_threshold", type=float, default=0.1)
