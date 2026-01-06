@@ -255,7 +255,7 @@ if __name__ == "__main__":
     args.add_argument("--artifact_path", type=Path)
     args.add_argument("--output_path", type=Path, default="output/")
     args.add_argument("--label_categories", type=str, choices=["scannet", "replica"], default="scannet")
-    args.add_argument("--split", type=str, choices=["train", "val", "test"], default="test")
+    args.add_argument("--split", type=str, choices=["train", "val", "test"], default="val")
     args.add_argument("--obj_thresh", type=float, default=0.7)
     args.add_argument("--rel_topk", type=int, default=10)
     args.add_argument("--hellinger_threshold", type=float, default=0.85)
