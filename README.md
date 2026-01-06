@@ -1,19 +1,11 @@
-<div align="center">
+
+# Habitat Integration
+### Script to be used : 
+```
+Merging/habitat_test.py
+```
+Please change the ```Dataset``` and its corresponding ```navmesh``` path
     
-# FROSS: Faster-than-Real-Time Online 3D Semantic Scene Graph Generation from RGB-D Images <br> [ICCV 2025]
-
-[![Project Page](https://img.shields.io/badge/Project-Page-green)](https://projects.howardkhh.net/FROSS/)
-[![Paper](https://img.shields.io/badge/Paper-arXiv-green)](https://arxiv.org/abs/2507.19993)
-[![ICCV](https://img.shields.io/badge/ICCV-2025-steelblue)](https://openaccess.thecvf.com/content/ICCV2025/html/Hou_FROSS_Faster-Than-Real-Time_Online_3D_Semantic_Scene_Graph_Generation_from_RGB-D_ICCV_2025_paper.html)
-[![Poster](https://img.shields.io/badge/Poster-PDF-blue)](https://projects.howardkhh.net/FROSS/Poster.pdf)
-[![Dataset](https://img.shields.io/badge/Dataset-ReplicaSSG-blue)](https://github.com/Howardkhh/ReplicaSSG)
-
-</div>
-
-<p align="center"><img width="1000" alt="image" src="Framework.png"></p>
-
-## Abstract
-The ability to abstract complex 3D environments into simplified and structured representations is crucial across various domains. 3D semantic scene graphs (SSGs) achieve this by representing objects as nodes and their interrelationships as edges, facilitating high-level scene understanding. Existing methods for 3D SSG generation, however, face significant challenges, including high computational demands and non-incremental processing that hinder their suitability for real-time open-world applications. To address this issue, we propose FROSS (**F**aster-than-**R**eal-Time **O**nline 3D **S**emantic **S**cene Graph Generation), an innovative approach for online and faster-than-real-time 3D SSG generation that leverages the direct lifting of 2D scene graphs to 3D space and represents objects as 3D Gaussian distributions. This framework eliminates the dependency on precise and computationally-intensive point cloud processing. Furthermore, we extend the Replica dataset with inter-object relationship annotations, creating the ReplicaSSG dataset for comprehensive evaluation of FROSS. The experimental results from evaluations on ReplicaSSG and 3DSSG datasets show that FROSS can achieve superior performance while operating significantly faster than prior 3D SSG generation methods.
 
 ## Table of Contents
 - [Installation](#installation)
