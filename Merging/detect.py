@@ -82,7 +82,8 @@ def draw_bbox(axe, bboxes, labels, probs, class_names, obj_colors):
             
         score = np.max(probs[i]) if hasattr(probs[i], 'max') else probs[i]
         L = 0.2126*(color[0]**2.2) + 0.7152*(color[1]**2.2) + 0.0722*(color[2]**2.2)
-        
+        # if score < 0.:
+        #     continue
         # Draw Box
         axe.add_patch(plt.Rectangle((x1, y1), w, h, fill=False, edgecolor=color, linewidth=3))
         
@@ -410,7 +411,7 @@ if __name__ == "__main__":
     args.add_argument("--dataset_path", type=str, default="./", help="Path to dataset root.")
     
     # Inference parameters
-    args.add_argument("--label_categories", type=str, choices=["scannet", "replica"], default="scannet")
+    args.add_argument("--label_categories", type=str, choices=["scannet", "replica"], default="replica")
     args.add_argument("--obj_thresh", type=float, default=0.5, help="Confidence threshold for showing objects.")
     args.add_argument("--rel_topk", type=int, default=20)
     
